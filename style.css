@@ -19,8 +19,22 @@ body {
     justify-content: center;
     align-items: center;
     background: var(--bg-gradient);
-    overflow: hidden;
+    overflow-x: hidden;
     color: var(--text-color);
+}
+
+/* Video de Fondo */
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    object-fit: cover;
+    filter: brightness(0.6);
 }
 
 .background-animation {
@@ -30,25 +44,29 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: var(--bg-gradient);
+    opacity: 0.85;
+    /* Permite ver el video sutilmente */
 }
 
 .container {
-    width: 90%;
+    width: 95%;
     max-width: 900px;
     z-index: 1;
+    padding: 20px 0;
 }
 
 .card {
     background: var(--card-bg);
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
     position: relative;
-    /* overflow: hidden; */
-    /* Eliminado para evitar que los corazones se vean cortados */
+    width: 100%;
 }
 
 .content {
@@ -60,15 +78,15 @@ body {
 
 .title {
     font-family: 'Great Vibes', cursive;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 20px;
     color: var(--secondary-color);
 }
 
 .letter {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.6;
-    min-height: 150px;
+    min-height: 180px;
     font-weight: 300;
 }
 
@@ -76,35 +94,37 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    animation: float 4s ease-in-out infinite;
 }
 
 #tree-svg {
     width: 100%;
+    max-width: 400px;
     height: auto;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     overflow: visible;
-    /* Asegurar que los corazones que sobresalen se vean */
 }
 
 .counter-section {
     margin-top: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
+    padding-top: 30px;
     text-align: center;
 }
 
 .counter-label {
     font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     margin-bottom: 15px;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .timer {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .time-unit {
@@ -120,16 +140,15 @@ body {
 }
 
 .time-unit span:last-child {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 /* Tree Animations */
 .tree-path {
     fill: none;
     stroke: #3d2b24;
-    /* Un marrón más oscuro y profundo */
     stroke-linecap: round;
 }
 
@@ -161,11 +180,6 @@ body {
     }
 }
 
-/* Float animation for the whole tree section */
-.tree-section {
-    animation: float 4s ease-in-out infinite;
-}
-
 @keyframes float {
 
     0%,
@@ -178,7 +192,7 @@ body {
     }
 }
 
-/* --- Menú de Música e Idiomas (Glassmorphism Premium) --- */
+/* Menú de Música e Idiomas */
 .music-wrapper {
     position: absolute;
     top: 25px;
@@ -206,22 +220,18 @@ body {
 .music-control:hover {
     background: rgba(255, 255, 255, 0.25);
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .music-icon {
     font-size: 1.3rem;
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
 .music-text {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .music-menu {
@@ -234,7 +244,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-15px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s ease;
 }
 
 .music-menu.show {
@@ -257,50 +267,87 @@ body {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    white-space: nowrap;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    outline: none;
 }
 
 .lang-btn:hover {
     background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.08);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .lang-btn.active {
     background: rgba(255, 71, 87, 0.4);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 15px rgba(255, 71, 87, 0.3);
 }
 
 .music-control.playing {
     background: rgba(255, 71, 87, 0.35);
-    border-color: rgba(255, 255, 255, 0.6);
     animation: premiumPulse 2s infinite ease-in-out;
 }
 
 @keyframes premiumPulse {
     0% {
-        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
     }
 
     50% {
-        box-shadow: 0 10px 45px rgba(255, 71, 87, 0.6), 0 0 0 10px rgba(255, 255, 255, 0);
+        box-shadow: 0 10px 45px rgba(255, 71, 87, 0.6);
     }
 
     100% {
-        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
     }
 }
 
-@media (max-width: 768px) {
+/* Responsividad mejorada para celulares */
+@media (max-width: 850px) {
     .content {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .title {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .letter {
+        text-align: center;
+        font-size: 1.05rem;
+        min-height: auto;
+        padding-bottom: 20px;
     }
 
     .card {
-        padding: 20px;
+        padding: 30px 20px;
+        margin: 10px;
+    }
+
+    .tree-section {
+        order: -1;
+        /* Árbol arriba en móviles */
+    }
+
+    .music-wrapper {
+        top: 10px;
+        right: 10px;
+        left: auto;
+        /* Mover a la derecha en móvil para no estorbar el texto si es centrado */
+    }
+
+    #tree-svg {
+        max-width: 320px;
+    }
+
+    .time-unit span:first-child {
+        font-size: 2rem;
+    }
+
+    .time-unit {
+        min-width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
     }
 
     .timer {
@@ -312,15 +359,20 @@ body {
     }
 
     .time-unit span:first-child {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
-    .music-wrapper {
-        top: 15px;
-        left: 15px;
+    .message-section {
+        padding: 0 10px;
+    }
+
+    .music-text {
+        display: none;
+        /* Solo icono en pantallas muy pequeñas */
     }
 
     .music-control {
-        padding: 8px 16px;
+        padding: 10px;
+        border-radius: 50%;
     }
 }
