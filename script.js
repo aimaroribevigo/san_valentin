@@ -122,12 +122,12 @@ function animateTree() {
 
             // Un poco de aleatoriedad para llenar huecos en el centro
             const angle = Math.random() * Math.PI * 2;
-            const dist = Math.random() * (i % 3 === 0 ? 90 : 60); // Algunos corazones más lejos, otros más cerca
+            const dist = Math.random() * (i % 3 === 0 ? 70 : 50); // Reducido para contención
 
-            const x = end.x + Math.cos(angle) * dist * 1.5;
+            const x = end.x + Math.cos(angle) * dist * 1.1; // Factor horizontal reducido
             const y = end.y + Math.sin(angle) * dist;
 
-            const size = 0.3 + Math.random() * 1.3;
+            const size = 0.3 + Math.random() * 1.2;
             const delay = Math.random() * 5;
 
             const heart = createHeart(x, y, size, delay);

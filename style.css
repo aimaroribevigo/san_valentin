@@ -70,6 +70,8 @@ body {
     position: relative;
     width: 100%;
     max-width: 850px;
+    overflow: hidden;
+    /* Contener corazones para que no salgan de la tarjeta */
 }
 
 .content {
