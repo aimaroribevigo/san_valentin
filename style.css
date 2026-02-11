@@ -302,6 +302,184 @@ body {
     }
 }
 
+/* Game Styles */
+.game-teaser {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.game-btn {
+    padding: 12px 35px;
+    border-radius: 50px;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.game-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: var(--secondary-color);
+    box-shadow: 0 15px 30px rgba(255, 77, 109, 0.5);
+}
+
+.game-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+}
+
+.game-header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.score-board {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.game-canvas {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    background: rgba(255, 77, 109, 0.05);
+}
+
+.game-catcher {
+    position: absolute;
+    top: 0;
+    /* Reset top to use transform exclusively */
+    left: 80px;
+    font-size: 2.5rem;
+    pointer-events: none;
+    filter: drop-shadow(0 0 15px var(--primary-color));
+    z-index: 10;
+    will-change: transform;
+}
+
+.game-pipe {
+    position: absolute;
+    width: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    will-change: transform;
+    left: 0;
+    /* Use transform for horizontal movement */
+}
+
+.game-boy {
+    position: absolute;
+    font-size: 3rem;
+    z-index: 15;
+    will-change: transform;
+    pointer-events: none;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.game-particle {
+    position: absolute;
+    font-size: 0.8rem;
+    pointer-events: none;
+    user-select: none;
+    z-index: 5;
+    will-change: transform, opacity;
+}
+
+.falling-heart {
+    position: absolute;
+    font-size: 1.5rem;
+    pointer-events: none;
+    user-select: none;
+}
+
+.game-instructions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    animation: fadeOut 3s forwards;
+    z-index: 20;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes jumpScale {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.jump-active {
+    animation: jumpScale 0.2s ease-out;
+}
+
+.game-shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
 /* Responsividad General Fix */
 @media (max-width: 850px) {
     body {
