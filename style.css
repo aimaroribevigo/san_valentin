@@ -1,0 +1,326 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff758f;
+    --bg-gradient: linear-gradient(135deg, #4d0011 0%, #a00028 50%, #ff4d6d 100%);
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --text-color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-gradient);
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    z-index: 1;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+    /* overflow: hidden; */
+    /* Eliminado para evitar que los corazones se vean cortados */
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.letter {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    min-height: 150px;
+    font-weight: 300;
+}
+
+.tree-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#tree-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+    overflow: visible;
+    /* Asegurar que los corazones que sobresalen se vean */
+}
+
+.counter-section {
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.counter-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    min-width: 80px;
+}
+
+.time-unit span:first-child {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.time-unit span:last-child {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tree Animations */
+.tree-path {
+    fill: none;
+    stroke: #3d2b24;
+    /* Un marrón más oscuro y profundo */
+    stroke-linecap: round;
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.heart {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.heart:hover {
+    transform: scale(calc(var(--scale, 1) * 1.5)) !important;
+}
+
+@keyframes bloom {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(var(--scale, 1));
+        opacity: 1;
+    }
+}
+
+/* Float animation for the whole tree section */
+.tree-section {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* --- Menú de Música e Idiomas (Glassmorphism Premium) --- */
+.music-wrapper {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 1000;
+}
+
+.music-control {
+    padding: 10px 22px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    color: white;
+    outline: none;
+}
+
+.music-control:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.music-icon {
+    font-size: 1.3rem;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.music-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.music-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-btn {
+    padding: 10px 24px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lang-btn.active {
+    background: rgba(255, 71, 87, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.3);
+}
+
+.music-control.playing {
+    background: rgba(255, 71, 87, 0.35);
+    border-color: rgba(255, 255, 255, 0.6);
+    animation: premiumPulse 2s infinite ease-in-out;
+}
+
+@keyframes premiumPulse {
+    0% {
+        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 10px 45px rgba(255, 71, 87, 0.6), 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .timer {
+        gap: 10px;
+    }
+
+    .time-unit {
+        min-width: 60px;
+    }
+
+    .time-unit span:first-child {
+        font-size: 1.8rem;
+    }
+
+    .music-wrapper {
+        top: 15px;
+        left: 15px;
+    }
+
+    .music-control {
+        padding: 8px 16px;
+    }
+}

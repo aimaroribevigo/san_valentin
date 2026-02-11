@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el amor de mi vida</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-animation"></div>
+
+    <main class="container">
+        <div class="card">
+            <!-- Botón de Música y Selección de Idioma -->
+            <div class="music-wrapper">
+                <button id="music-btn" class="music-control">
+                    <span class="music-icon">🎵</span>
+                    <span class="music-text">Música</span>
+                </button>
+                <div id="music-menu" class="music-menu">
+                    <button class="lang-btn" data-lang="es">Español</button>
+                    <button class="lang-btn" data-lang="en">Inglés</button>
+                </div>
+            </div>
+            <audio id="bg-music" loop></audio>
+
+            <div class="content">
+                <div class="message-section">
+                    <h1 class="title">Para el amor de mi vida:</h1>
+                    <p id="typing-text" class="letter"></p>
+                </div>
+
+                <div class="tree-section">
+                    <div id="tree-container">
+                        <!-- SVG Tree will be injected here or defined here -->
+                        <svg id="tree-svg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Trunk and branches will be animated here -->
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="counter-section">
+                <p class="counter-label">Nuestro amor comenzó hace...</p>
+                <div id="counter" class="timer">
+                    <div class="time-unit"><span id="days">00</span><span>días</span></div>
+                    <div class="time-unit"><span id="hours">00</span><span>horas</span></div>
+                    <div class="time-unit"><span id="minutes">00</span><span>minutos</span></div>
+                    <div class="time-unit"><span id="seconds">00</span><span>segundos</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
